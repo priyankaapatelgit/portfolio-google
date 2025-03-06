@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crayon Cursor Effect</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background-color: #f0f0f0;
+      }
+      canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+
+    <script>
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+
+      // Resize canvas dynamically
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resizeCanvas();
+      window.addEventListener("resize", resizeCanvas);
+
+      document.addEventListener("mousemove", (event) => {
+        const { clientX, clientY } = event;
+
+        // Generate color dynamically based on position
+        const red = Math.round((clientX / window.innerWidth) * 255);
+        const green = Math.round((clientY / window.innerHeight) * 255);
+        const blue = Math.round(
+          ((clientX + clientY) / (window.innerWidth + window.innerHeight)) * 255
+        );
+
+        // Draw crayon effect
+        ctx.fillStyle = `rgba(${red}, ${green}, ${blue}, 0.7)`;
+        ctx.beginPath();
+        ctx.arc(clientX, clientY, 20, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Keep colors without fading (no gray effect)
+        ctx.globalCompositeOperation = "source-over";
+      });
+    </script>
+  </body>
+</html>
