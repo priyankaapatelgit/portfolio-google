@@ -1244,7 +1244,7 @@ div[class*="filter-"] ul li {
 }
 /* password protected*/
 .pass-input {
-  border-radius: 20px;
+  border-radius: 6px;
   padding: 8px 16px;
   width: 100%;
 }
@@ -1260,7 +1260,7 @@ div[class*="filter-"] ul li {
 button {
   color: #232323;
   background: rgba(226, 255, 96, 0.9);
-  border-radius: 20px;
+  border-radius: 6px;
   padding: 8px 20px;
   border: 1px solid rgba(226, 255, 96, 0.9);
   cursor: pointer;
